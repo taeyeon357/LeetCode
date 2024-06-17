@@ -4,11 +4,8 @@ class Solution {
         int end = s.length - 1;
         while(start < end){
             char tmp = s[start];
-            s[start] = s[end];
-            s[end] = tmp;
-            
-            start++;
-            end--;
+            s[start++] = s[end];
+            s[end--] = tmp;
         }
     }
 }
