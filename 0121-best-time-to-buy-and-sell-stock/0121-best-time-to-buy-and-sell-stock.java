@@ -8,6 +8,6 @@ class Solution {
             max = Math.max(max, prices[i]-buy);
         }
         
-        return max > 0 ? max : 0;
+        return max;
     }
 }
