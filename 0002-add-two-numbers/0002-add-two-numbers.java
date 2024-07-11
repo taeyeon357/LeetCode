@@ -13,30 +13,25 @@ class Solution {
         ListNode node = new ListNode();
         ListNode head = node;
         int carry = 0;
-        while(true){
-            if(l1 != null && l2 != null){
-                node.next = new ListNode((l1.val + l2.val + carry)%10);
-                carry = (l1.val + l2.val + carry)/10;
+        int sum = 0;
+        int rem = 0;
+        while(l1 != null || l2 != null || carry != 0){
+            sum = 0;
+            if(l1 != null){
+                sum += l1.val;
                 l1 = l1.next;
-                l2 = l2.next; 
-            }else if(l1 != null){
-                node.next = new ListNode((l1.val + carry)%10);
-                carry = (l1.val + carry) / 10;
-                l1 = l1.next;
-            }else if(l2 != null){
-                node.next = new ListNode((l2.val + carry)%10);
-                carry = (l2.val + carry) / 10;
-                l2 = l2.next;
-            }else if(carry == 1){
-                node.next = new ListNode(1);
-                carry = 0;
-            }else{
-                break;
             }
-            node = node.next;
+            if(l2 != null){
+                sum += l2.val;
+                l2 = l2.next;
+            }
             
+            rem = (sum + carry) % 10;
+            carry = (sum + carry) / 10;
+            node.next = new ListNode(rem);
+            node = node.next;
         }
-
+            
         return head.next;
         
     }
