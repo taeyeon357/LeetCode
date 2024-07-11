@@ -10,33 +10,15 @@
  */
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode head = new ListNode();
-        ListNode pointer = head;
+        if(list1 == null) return list2;
+        if(list2 == null) return list1;
         
-        ListNode n1 = list1;
-        ListNode n2 = list2;
-        while(n1 != null || n2 != null){
-            if(n1 == null){
-                pointer.next = n2;
-                break;
-            }
-            if(n2 == null){
-                pointer.next = n1;
-                break;
-            }
-            
-            ListNode node;
-            if(n1.val <= n2.val){
-                node = new ListNode(n1.val);
-                pointer.next = node;
-                n1 = n1.next; 
-            }else{
-                node = new ListNode(n2.val);
-                pointer.next = node;
-                n2 = n2.next;
-            }
-            pointer = pointer.next;         
+        if(list1.val < list2.val){
+            list1.next = mergeTwoLists(list1.next, list2);
+            return list1;
+        }else{
+            list2.next = mergeTwoLists(list1, list2.next);
+            return list2;
         }
-        return head.next;
     }
 }
