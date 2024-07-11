@@ -29,7 +29,7 @@ class Solution {
                 l2 = l2.next;
             }else if(carry == 1){
                 node.next = new ListNode(1);
-                break;
+                carry = 0;
             }else{
                 break;
             }
